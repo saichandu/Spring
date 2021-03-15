@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: saavvaru
+Build-Jdk: 14.0.2
+Implementation-Title: Learning
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.springboot
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/application/
+Created-By: Maven Integration for Eclipse
+
