@@ -3,6 +3,8 @@ package com.movie.catalog.service.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,9 @@ import com.movie.catalog.service.pojos.Rating;
 public class CatalogController {
 	
 	@Autowired
+	HttpSession session;
+	
+	@Autowired
 	RestTemplate restTemplate;
 	
 	@Autowired
@@ -30,7 +35,10 @@ public class CatalogController {
 	RatingsDataService ratingsService;
 	
 	@GetMapping("/{movieid}")
-	public CatalogItem getRating(@PathVariable String movieid) {
+	public CatalogItem getRating(@PathVariable(name="movieid") int movieid) {
+		
+		System.out.println(Thread.currentThread().getId());
+		movieid = session.getAttribute("usercontext")==null?movieid :Integer.parseInt((String) session.getAttribute("usercontext"));
 		
 		Movie movie = restTemplate.getForObject("http://MOVIEINFOSERVICE/movies/" + movieid, Movie.class);
 		Rating[] rating = restTemplate.getForObject("http://RATINGSSERVICE/ratings/" + movieid, Rating[].class);
