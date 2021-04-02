@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { Country } from '../common/country';
+import { Order } from "../common/order";
 import { State } from '../common/state';
 import { HttpClient } from "@angular/common/http";
 
@@ -12,6 +13,7 @@ export class UtilService {
   constructor(private httpClient : HttpClient) { }
   
   url: string = "http://localhost:9090/cc/countries/";
+  url2: string = "http://localhost:9090/api/orders/";
   
   getCCMonths(startMonth : number) : Observable<number[]> {
     let months : number[] = [];
@@ -37,6 +39,10 @@ export class UtilService {
   
   getStates(countryCode: number): Observable<State[]> {
     return this.httpClient.get<State[]>(this.url + countryCode + "/states");
+  }
+  
+   getOrders(email: string): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(this.url2 + email);
   }
   
 }

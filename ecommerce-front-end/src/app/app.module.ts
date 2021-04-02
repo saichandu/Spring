@@ -27,6 +27,7 @@ import {
 } from '@okta/okta-angular';
 
 import myAppConfig from './config/my-app-config';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 const oktaConfig = Object.assign({
   onAuthRequired: (AuthGuard, injector) => {
@@ -46,6 +47,7 @@ const routes = [
   {path: 'search/:keyword', component: ProductListComponent},  
   {path: 'checkout', component: CheckoutComponent, canActivate: [OktaAuthGuard]},
   {path: 'orderplaced/:orderTrackingNumber', component: OrderPlacedComponent},
+  {path: 'myorders', component: MyOrdersComponent},
   {path: '', redirectTo: '/products', pathMatch: 'full'},
   {path: '**', redirectTo: '/products', pathMatch: 'full'}
 ];
@@ -61,7 +63,8 @@ const routes = [
     CheckoutComponent,
     OrderPlacedComponent,
     LoginComponent,
-    LoginStatusComponent
+    LoginStatusComponent,
+    MyOrdersComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

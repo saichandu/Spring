@@ -1,5 +1,9 @@
 export class Order {
-  
-    constructor(private totalQuantity: number, private totalPrice: number) {
-    }
+    id: number = 0;
+    orderTrackingNumber : string = "";
+    totalQuantity : number = 0;
+    totalPrice: number = 0;
+    status: string = "";
+    dateCreated: Date;
+    lastUpdated: Date;
 }

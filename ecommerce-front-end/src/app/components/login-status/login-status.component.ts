@@ -1,3 +1,4 @@
+import { CartService } from "../../services/cart-service";
 import { Component, OnInit } from '@angular/core';
 import { OktaAuthService } from '@okta/okta-angular';
 
@@ -10,8 +11,9 @@ export class LoginStatusComponent implements OnInit {
 
   isAuthenticated: boolean = false;
   userFullName: any = "";
+  session: Storage = sessionStorage;
 
-  constructor(private oktaAuthService: OktaAuthService) { }
+  constructor(private oktaAuthService: OktaAuthService, private cartService: CartService) { }
 
   ngOnInit(): void {
 
@@ -29,8 +31,9 @@ export class LoginStatusComponent implements OnInit {
     if (this.isAuthenticated) {
       this.oktaAuthService.getUser().then(
         (res) => {
-          console.log(res);
           this.userFullName = res.name;
+          
+          this.session.setItem("useremail", res.email || "");
         }
       );
     }
@@ -38,5 +41,10 @@ export class LoginStatusComponent implements OnInit {
 
   logout() {
     this.oktaAuthService.signOut();
+    
+    this.session.removeItem('totalcartitems');
+    this.cartService.totalCartItems = [];
+    this.cartService.totalCartValue.next(0);
+    this.cartService.totalQuantity.next(0);
   }
 }
