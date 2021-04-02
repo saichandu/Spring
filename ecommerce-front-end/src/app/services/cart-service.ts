@@ -6,11 +6,20 @@ import { Subject, BehaviorSubject } from "rxjs";
   providedIn: 'root'
 })
 export class CartService {
+
+  session: Storage = sessionStorage;
+  
   totalCartItems: CartItem[] = [];
   totalCartValue: Subject<number> = new BehaviorSubject<number>(0);
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
   
-  constructor() { }
+  constructor() {
+    let data = this.session.getItem('totalcartitems');
+    if (data != null) {
+      this.totalCartItems = JSON.parse(data);
+      this.compute();
+    }
+  }
   
   addToCart(currentlyAdded : CartItem) {
     
@@ -60,5 +69,7 @@ export class CartService {
     
       this.totalCartValue.next(totalPrice);
       this.totalQuantity.next(totalItems);
+    
+      this.session.setItem('totalcartitems', JSON.stringify(this.totalCartItems));
   }
 }

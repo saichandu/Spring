@@ -4,6 +4,7 @@
     Change border to 10px
 */
 .security-btn {
+	margin-top: 10px;
     position:relative;
     right:0;
     min-width:95px;
@@ -33,9 +34,11 @@
     - remove 'solid', 'font-size', 'color'
 */
 .login-status-user-info {
+	margin-top: 9px;
     line-height:43px;
     border:1px;
     padding:0 17px;
+    color: white;
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     border-radius:3px;

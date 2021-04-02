@@ -9,7 +9,7 @@ import { OktaAuthService } from '@okta/okta-angular';
 export class LoginStatusComponent implements OnInit {
 
   isAuthenticated: boolean = false;
-  userFullName: string = "";
+  userFullName: any = "";
 
   constructor(private oktaAuthService: OktaAuthService) { }
 
@@ -27,12 +27,9 @@ export class LoginStatusComponent implements OnInit {
 
   getUserDetails() {
     if (this.isAuthenticated) {
-
-      // Fetch the logged in user details (user's claims)
-      //
-      // user full name is exposed as a property name
       this.oktaAuthService.getUser().then(
         (res) => {
+          console.log(res);
           this.userFullName = res.name;
         }
       );
@@ -40,7 +37,6 @@ export class LoginStatusComponent implements OnInit {
   }
 
   logout() {
-    // Terminates the session with Okta and removes current tokens.
     this.oktaAuthService.signOut();
   }
 }

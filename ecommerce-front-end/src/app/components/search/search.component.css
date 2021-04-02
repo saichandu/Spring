@@ -4,13 +4,20 @@
 }
 
 .float-child1 {
-    width: 85%;
+    width: 55%;
     float: left;
     height: 57px;
 }
 
 .float-child2 {
     width: 15%;
+    float: left;
+    background-color: #163f62;
+    height: 57px;
+}
+
+.float-child3 {
+    width: 30%;
     float: left;
     background-color: #163f62;
     height: 57px;
