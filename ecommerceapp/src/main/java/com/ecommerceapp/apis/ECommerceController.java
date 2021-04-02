@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerceapp.entities.Order;
 import com.ecommerceapp.entities.Product;
 import com.ecommerceapp.entities.ProductCategory;
+import com.ecommerceapp.repos.OrderRepository;
 import com.ecommerceapp.repos.ProductCategoryRepository;
 import com.ecommerceapp.repos.ProductRepository;
 
@@ -22,6 +24,9 @@ public class ECommerceController {
 	
 	@Autowired
 	ProductRepository prodRepo;
+	
+	@Autowired
+	OrderRepository orderRepo;
 	
 	@Autowired
 	ProductCategoryRepository prodCatRepo;
@@ -57,5 +62,9 @@ public class ECommerceController {
 		return prodRepo.findByNameContainingIgnoreCase(searchKey);
 	}
 
+	@GetMapping("/orders/{useremail}")
+	public List<Order> getOrders(@PathVariable(name="useremail") String email) {
+		return orderRepo.findByCustomerEmail(email);
+	}
 
 }
