@@ -12,6 +12,8 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "allowJs": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
@@ -26,5 +28,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
+  }
 }
