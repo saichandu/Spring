@@ -7,6 +7,6 @@ export class Purchase {
     customer: Customer = new Customer();
     shippingAddress: Address = new Address();
     billingAddress: Address  = new Address();
-    order: Order = new Order(0,0);
+    order: Order = new Order();
     orderItems: OrderItem[] = []; 
 }

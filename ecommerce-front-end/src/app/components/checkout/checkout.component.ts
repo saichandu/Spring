@@ -112,7 +112,9 @@ export class CheckoutComponent implements OnInit {
     
     this.cartService.totalCartItems.map(temp => {placeOrder.orderItems.push(new OrderItem(temp))});
     
-    placeOrder.order = new Order(this.totalQuantity, this.totalValue);
+    placeOrder.order = new Order();
+    placeOrder.order.totalQuantity = this.totalQuantity;
+    placeOrder.order.totalPrice = this.totalValue;
     
     this.checkoutService.purchase(placeOrder).subscribe({
       next: response => {

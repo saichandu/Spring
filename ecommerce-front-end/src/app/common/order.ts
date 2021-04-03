@@ -4,6 +4,6 @@ export class Order {
     totalQuantity : number = 0;
     totalPrice: number = 0;
     status: string = "";
-    dateCreated: Date;
-    lastUpdated: Date;
+    dateCreated: Date = new Date();
+    lastUpdated: Date = new Date();
 }
