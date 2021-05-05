@@ -1,5 +1,6 @@
 package com.movie.catalog.service.controllers;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class LoginController {
 	@Autowired
 	HttpSession session;
 
+	@Autowired
+	HttpServletRequest request;
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showWelcomePage(ModelMap model) {
 
@@ -23,6 +27,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String showWelcomePage(ModelMap model, @RequestParam String name) {
+		session = request.getSession(false);
 		System.out.println(Thread.currentThread().getId());
 		System.out.println("1");
 		session.setAttribute("usercontext", name);

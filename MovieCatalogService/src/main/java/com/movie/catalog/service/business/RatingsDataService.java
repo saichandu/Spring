@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.movie.catalog.service.pojos.Movie;
 import com.movie.catalog.service.pojos.Rating;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Service
 public class RatingsDataService {
@@ -15,7 +14,6 @@ public class RatingsDataService {
 	RestTemplate restTemplate;
 	
 	
-	@HystrixCommand(fallbackMethod = "getRatingsFallback")
 	public Rating getRatings(Movie movie) {
 		Rating[] rating = restTemplate.getForObject("http://RATINGSSERVICE/ratings/" + movie.getMovieId(), Rating[].class);
 		
